@@ -19,7 +19,6 @@ class Book(models.Model):
 
 
 class Author(models.Model):
-    author_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     bio = models.TextField(blank=True, null=True)
@@ -29,28 +28,25 @@ class Author(models.Model):
 
 
 class Genre(models.Model):
-    genre_id = models.AutoField(primary_key=True)
-    genre_name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.genre_name
+        return self.name
 
 
 class OrderItem(models.Model):
-    order_item_id = models.AutoField(primary_key=True)
     bill = models.ForeignKey('Bill', on_delete=models.CASCADE)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     price = models.DecimalField(max_digits=5, decimal_places=2)
 
     def __str__(self):
-        return f"OrderItem {self.order_item_id} for Bill {self.bill.bill_id}"
+        return f"OrderItem {self.pk} for Bill {self.bill.pk}"
 
 
 class Bill(models.Model):
-    bill_id = models.AutoField(primary_key=True)
-    bill_date = models.DateTimeField()
+    date = models.DateTimeField()
     total_amount = models.DecimalField(max_digits=6, decimal_places=2)
 
     def __str__(self):
-        return f"Bill {self.bill_id} - {self.bill_date}"
+        return f"Bill {self.pk} - {self.bill_date}"
