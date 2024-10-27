@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+            Інвентаризація та Замовлення Книжкового Магазину
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'base/css/base.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Книжковий Магазин</h1>
+    </header>
+
+    <div class="tab">
+        <a href="{% url 'books' %}">Книги</a>        
+        <a href="{% url 'authors' %}">Автори</a>
+        <a href="{% url 'genres' %}">Жанри</a>
+        <a href="{% url 'orders' %}">Замовлення</a>
+        <a href="{% url 'bills' %}">Рахунки</a>
+    </div>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>© 2024 Книжковий Магазин. Всі права захищені.</p>
+    </footer>
+
+    <script src="{% static 'base/js/base.js' %}"></script>
+
+</body>
+</html>

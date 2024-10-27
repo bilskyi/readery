@@ -1,0 +1,129 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.tab {
+    display: flex;
+    justify-content: center;
+    background-color: #333;
+    padding: 10px 0;
+}
+
+.tab a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    margin: 0 5px;
+    font-weight: bold;
+}
+
+.tab a:hover {
+    background-color: #555;
+    border-radius: 4px;
+}
+
+.tab a.active {
+    background-color: #444;
+    border-radius: 4px;
+}
+
+.tab button.active {
+    background-color: #555;
+}
+
+.tab th button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 5px;
+}
+
+.tab th button i {
+    font-size: 14px;
+    color: #333;
+}
+
+.tab th button:hover i {
+    color: #555;
+}
+
+.tabcontent {
+    display: none;
+    padding: 20px;
+    border-top: none;
+}
+
+main {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f8f8f8;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #f8f8f8;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+button:hover {
+    background-color: #f0f0f0;
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+}
+
+.form-container {
+    margin: 20px 0;
+    display: none;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
