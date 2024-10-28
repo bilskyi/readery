@@ -81,6 +81,7 @@ button {
     padding: 10px 20px;
     border: none;
     background-color: #333;
+    font-weight: bold;
     color: #fff;
     cursor: pointer;
     margin-right: 10px;
@@ -91,6 +92,30 @@ button {
 
 button:hover {
     background-color: #444;
+}
+
+button.edit-button {
+    background-color: #1898f4; /* Change to blue for edit button */
+}
+
+button.delete-button {
+    background-color: #e43838; /* Change to red for delete button */
+}
+
+button.edit-button:hover {
+    background-color: #0c81d5; /* Darker shade for hover effect */
+}
+
+button.delete-button:hover {
+    background-color: #c93030; /* Darker shade for hover effect */
+}
+
+button.add-new-button {
+    background-color: #72BF78;
+}
+
+button.add-new-button:hover {
+    background-color: #5e9c63;
 }
 
 /* Input, Textarea, Checkbox, and Date Styling */
@@ -192,7 +217,6 @@ footer {
 }
 
 .section-button button {
-    background-color: #333;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -200,8 +224,4 @@ footer {
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.3s;
-}
-
-.section-button button:hover {
-    background-color: #444;
 }

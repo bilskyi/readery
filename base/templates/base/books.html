@@ -1,0 +1,38 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+        <section id="base">
+            {% include 'base/include/form.html' %}
+            <table>
+                <thead>
+                    <tr>
+                        {% for field in fields %}
+                            <th>{{field}}</th>
+                        {% endfor %}
+                        <th>ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody id="books-table-body">
+                    {% for obj in objects%}
+                    <tr>
+                        <!-- FIELDS -->
+                            <td>{{obj.id}}</td>
+                            <td>{{obj.isbn}}</td>
+                            <td>{{obj.title}}</td>
+                            <td>{{obj.slug}}</td>
+                            <td>{{obj.author}}</td>
+                            <td>{{obj.genre}}</td>
+                            <td>{{obj.price}}</td>
+                            <td>{{obj.publication_date}}</td>
+                            <td>{{obj.description}}</td>
+                            <td>{{obj.stock_quantity}}</td>
+                            <td>
+                                <button class="edit-button" onclick="updateBook(this)">Оновити</button>
+                                <button class="delete-button" onclick="deleteBook(this)">Видалити</button>
+                            </td>                            
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+{% endblock content %}

@@ -1,38 +1,11 @@
-{% extends 'base/base.html' %}
-{% load static %}
-{% block content %}
-        <section id="base">
-            {% include 'base/include/form.html' %}
-            <table>
-                <thead>
-                    <tr>
-                        {% for field in fields %}
-                            <th>{{field}}</th>
-                        {% endfor %}
-                        <th>ACTIONS</th>
-                    </tr>
-                </thead>
-                <tbody id="books-table-body">
-                    {% for obj in objects%}
-                    <tr>
-                        <!-- FIELDS -->
-                            <td>{{obj.id}}</td>
-                            <td>{{obj.isbn}}</td>
-                            <td>{{obj.title}}</td>
-                            <td>{{obj.slug}}</td>
-                            <td>{{obj.author}}</td>
-                            <td>{{obj.genre}}</td>
-                            <td>{{obj.price}}</td>
-                            <td>{{obj.publication_date}}</td>
-                            <td>{{obj.description}}</td>
-                            <td>{{obj.stock_quantity}}</td>
-                        <td>
-                            <button onclick="updateBook(this)">Оновити</button>
-                            <button onclick="deleteBook(this)">Видалити</button>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </section>
-{% endblock content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>HI</h1>
+</body>
+</html>
