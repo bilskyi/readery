@@ -26,7 +26,7 @@ class ModelContextMixin:
 
         if model:
             fields = [field.verbose_name for field in model._meta.fields]
-            objects = model.objects.all()
+            objects = model.objects.all().select_related()
             context['fields'] = fields
             context['form'] = self.get_form()
             context['objects'] = objects
