@@ -1,3 +1,4 @@
+/* General Layout and Body Styling */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -17,6 +18,7 @@ h1 {
     font-size: 24px;
 }
 
+/* Tab Navigation Styling */
 .tab {
     display: flex;
     justify-content: center;
@@ -42,33 +44,13 @@ h1 {
     border-radius: 4px;
 }
 
-.tab button.active {
-    background-color: #555;
-}
-
-.tab th button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    margin-left: 5px;
-}
-
-.tab th button i {
-    font-size: 14px;
-    color: #333;
-}
-
-.tab th button:hover i {
-    color: #555;
-}
-
 .tabcontent {
     display: none;
     padding: 20px;
     border-top: none;
 }
 
+/* Main Content Styling */
 main {
     max-width: 80%;
     margin: 0 auto;
@@ -77,6 +59,7 @@ main {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -93,37 +76,133 @@ table th {
     background-color: #f8f8f8;
 }
 
+/* Button Styling */
 button {
     padding: 10px 20px;
     border: none;
-    background-color: #f8f8f8;
+    background-color: #333;
+    color: #fff;
     cursor: pointer;
     margin-right: 10px;
     margin-bottom: 5px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #f0f0f0;
+    background-color: #444;
 }
 
-input[type="text"] {
+/* Input, Textarea, Checkbox, and Date Styling */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="number"],
+textarea,
+select {
     padding: 10px;
     width: 100%;
-    margin-bottom: 20px;
+    max-width: 600px;
+    margin-bottom: 10px;
     border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+textarea {
+    height: 100px; /* Specific height for text areas */
+    resize: vertical; /* Allow vertical resizing only */
+}
+
+input[type="checkbox"] {
+    margin-right: 8px;
+    transform: scale(1.2); /* Slightly larger checkboxes */
+    vertical-align: middle;
 }
 
 .form-container {
     margin: 20px 0;
+    padding: 20px;
     display: none;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
+.form-container h3 {
+    margin-top: 0;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Error Message Styling */
+.error-message {
+    color: #d9534f;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Submit Button Styling */
+form button[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+form button[type="submit"]:hover {
+    background-color: #444;
+}
+
+/* Footer Styling */
 footer {
     background-color: #333;
     color: #fff;
     text-align: center;
-    padding: 0;
+    padding: 10px 0;
     position: fixed;
     width: 100%;
     bottom: 0;
+}
+
+/* Custom Styling for Search Input */
+#search-books {
+    padding: 10px;
+    width: 100%;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Section Button Styling */
+.section-button {
+    margin-bottom: 20px;
+}
+
+.section-button button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.section-button button:hover {
+    background-color: #444;
 }

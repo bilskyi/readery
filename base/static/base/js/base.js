@@ -20,31 +20,7 @@ function openTab(evt, tabName) {
 
 // Toggle visibility of the add new book form 
 function toggleForm() { 
-    const form = document.querySelector('#books .form-container'); 
-    form.style.display = form.style.display === 'none' ? 'block' : 'none'; 
-} 
-
-// Toggle visibility of the add new author form 
-function toggleAuthorForm() { 
-    const form = document.querySelector('#authors .form-container'); 
-    form.style.display = form.style.display === 'none' ? 'block' : 'none'; 
-} 
-
-// Toggle visibility of the add new genre form 
-function toggleGenreForm() { 
-    const form = document.querySelector('#genres .form-container'); 
-    form.style.display = form.style.display === 'none' ? 'block' : 'none'; 
-} 
-
-// Toggle visibility of the add new order item form 
-function toggleOrderForm() { 
-    const form = document.querySelector('#orders .form-container'); 
-    form.style.display = form.style.display === 'none' ? 'block' : 'none'; 
-} 
-
-// Toggle visibility of the create new bill form 
-function toggleBillForm() { 
-    const form = document.querySelector('#bill .form-container'); 
+    const form = document.querySelector('#base .form-container'); 
     form.style.display = form.style.display === 'none' ? 'block' : 'none'; 
 } 
 

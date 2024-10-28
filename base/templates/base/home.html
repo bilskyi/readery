@@ -1,23 +1,8 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block content %}
-        <section id="books">
-            <div class="section-button">
-                <button onclick="toggleForm()">Додати нову книгу</button>
-            </div>
-            <h2>{{model_name|title}}</h2>
-            <input type="text" placeholder="Пошук книг за назвою, автором або жанром..." id="search-books">
-            <div class="form-container">
-                <h3>Додати нову книгу</h3>
-                <input type="text" placeholder="ISBN" id="new-book-isbn">
-                <input type="text" placeholder="Назва" id="new-book-title">
-                <input type="text" placeholder="Автор" id="new-book-author">
-                <input type="text" placeholder="Жанр" id="new-book-genre">
-                <input type="text" placeholder="Ціна" id="new-book-price">
-                <input type="text" placeholder="Дата публікації" id="new-book-date">
-                <input type="text" placeholder="Опис" id="new-book-description">
-                <button onclick="addBook()">Додати</button>
-            </div>
+        <section id="base">
+            {% include 'base/include/form.html' %}
             <table>
                 <thead>
                     <tr>

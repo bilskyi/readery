@@ -1,0 +1,38 @@
+<div class="section-button">
+    <button onclick="toggleForm()">{{ add_button_name }}</button>
+</div>
+
+<h2>{{ model_name|title }}</h2>
+
+<input type="text" placeholder="Пошук книг за назвою, автором або жанром..." id="search-books">
+
+<div class="form-container" id="form-container" style="display: {% if form.errors %} block {% else %} none {% endif %};">
+    <h3>{{ add_button_name }}</h3>
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="error-message">
+                        {% for error in field.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        
+        <button type="submit">Додати</button>
+    </form>
+</div>
+
+<script>
+    function toggleForm() {
+        const formContainer = document.getElementById("form-container");
+        formContainer.style.display = formContainer.style.display === "none" ? "block" : "none";
+    }
+</script>
