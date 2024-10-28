@@ -33,7 +33,6 @@ class ModelContextMixin:
         
         return context
 
-    
 
 class ModelSuccessUrlMixin:
     def get_success_url(self):
