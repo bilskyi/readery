@@ -225,3 +225,72 @@ footer {
     font-weight: bold;
     transition: background-color 0.3s;
 }
+
+
+/* Catalog and Pagination Styles */
+
+/* Pagination Container */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+/* Pagination UL Reset */
+.pagination ul {
+    display: flex;
+    gap: 8px;
+    padding: 0;
+    list-style-type: none;
+}
+
+/* Pagination Links */
+.pagination .page-item .page-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: var(--black);
+    background-color: #f0f0f0;
+    padding: 10px 14px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+    border: 1px solid #ddd;
+}
+
+/* Hover & Active States */
+.pagination .page-item .page-link:hover {
+    background-color: var(--green);
+    color: #fff;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--dark-color);
+    color: #fff;
+    border: 1px solid var(--dark-color);
+    cursor: default;
+}
+
+/* Disabled Links (First/Last on boundary pages) */
+.pagination .page-item .page-link[aria-disabled="true"] {
+    color: var(--light-color);
+    cursor: not-allowed;
+    background-color: #e0e0e0;
+    pointer-events: none;
+}
+
+/* Arrow Styling */
+.pagination .page-link span {
+    display: inline-block;
+    font-weight: bold;
+}
+
+/* Responsive Pagination */
+@media (max-width: 768px) {
+    .pagination .page-item .page-link {
+        font-size: 1.2rem;
+        padding: 8px 10px;
+    }
+}

@@ -6,6 +6,7 @@ from django.views.generic import TemplateView
 
 class ModelContextMixin:
     model: Model = None
+    paginate_by = 10
 
     def post(self, request, *args, **kwargs):
         self.object_list = self.get_queryset()
@@ -16,22 +17,22 @@ class ModelContextMixin:
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
-    
+
     def get_queryset(self):
-        return self.model.objects.all()
-    
+        return self.model.objects.all().select_related()
+
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
         model = self.model
 
         if model:
             fields = [field.verbose_name for field in model._meta.fields]
-            objects = model.objects.all().select_related()
             context['fields'] = fields
             context['form'] = self.get_form()
-            context['objects'] = objects
             context['model_name'] = model._meta.verbose_name_plural
+        
         return context
+
     
 
 class ModelSuccessUrlMixin:
