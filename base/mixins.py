@@ -3,7 +3,7 @@ from typing import Any, Dict
 from django.views.generic import TemplateView
 
 
-class ModelFieldsContextMixin:
+class ModelContextMixin:
     model: Model = None
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
