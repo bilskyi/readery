@@ -263,12 +263,12 @@ footer {
 /* Hover & Active States */
 .pagination .page-item .page-link:hover {
     background-color: var(--green);
-    color: #fff;
+    color: #131313;
 }
 
 .pagination .page-item.active .page-link {
     background-color: var(--dark-color);
-    color: #fff;
+    color: #131313;
     border: 1px solid var(--dark-color);
     cursor: default;
 }

@@ -12,7 +12,6 @@ class HomeView(generic.TemplateView):
 class BookView(ModelContextMixin, ModelSuccessUrlMixin, generic.edit.FormMixin, generic.ListView):
     model = Book
     template_name = 'base/books.html'
-    context_object_name = 'object_list'  # Ensure this is set for ListView context
     form_class = DynamicModelForm.create(Book)
     extra_context = {'add_button_name': 'Додати нову книгу'}
 
