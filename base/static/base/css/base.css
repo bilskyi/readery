@@ -194,12 +194,12 @@ form button[type="submit"]:hover {
 
 /* Footer Styling */
 footer {
+    bottom: 0;
     background-color: #333;
     color: #fff;
     text-align: center;
     padding: 10px 0;
     width: 100%;
-    bottom: 0;
 }
 
 /* Custom Styling for Search Input */
