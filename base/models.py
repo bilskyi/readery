@@ -71,10 +71,16 @@ class OrderItem(models.Model):
     bill = models.ForeignKey('Bill', on_delete=models.CASCADE, verbose_name='Рахунок')
     book = models.ForeignKey(Book, on_delete=models.CASCADE, verbose_name='Книга')
     quantity = models.IntegerField(verbose_name='Кількість')
-    price = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Ціна')
+    price = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Ціна', blank=True)
 
     def __str__(self):
         return f"OrderItem {self.pk} for Bill {self.bill.pk}"
+
+    def save(self, *args, **kwargs):
+        if not self.price:
+            self.price = self.book.price * self.quantity
+
+        super(OrderItem, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'Замовлений товар'
