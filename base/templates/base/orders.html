@@ -31,3 +31,37 @@
             </table>
         </section>
 {% endblock content %}
+{% block extra_scripts %}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const bookField = document.querySelector("#id_book");
+        const quantityField = document.querySelector("#id_quantity");
+        const priceField = document.querySelector("#id_price");
+
+        async function updatePrice() {
+            const bookId = bookField.value;
+            const quantity = parseInt(quantityField.value) || 0;
+
+            if (!bookId || quantity <= 0) {
+                priceField.value = "";
+                return;
+            }
+
+            try {
+                const response = await fetch(`/books/${bookId}/price/`);
+                const data = await response.json();
+
+                if (data.price) {
+                    const totalPrice = data.price * quantity;
+                    priceField.value = totalPrice.toFixed(2);
+                }
+            } catch (error) {
+                console.error("Error fetching book price:", error);
+                priceField.value = "";
+            }
+        }
+        bookField.addEventListener("change", updatePrice);
+        quantityField.addEventListener("input", updatePrice);
+    });
+</script>
+{% endblock extra_scripts %}
