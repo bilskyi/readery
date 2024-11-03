@@ -27,6 +27,7 @@ class Book(models.Model):
         return self.title
 
     class Meta:
+        ordering = ['pk']
         verbose_name = 'Книга'
         verbose_name_plural = 'Книги'
 
@@ -46,6 +47,7 @@ class Author(models.Model):
         return f"{self.first_name} {self.last_name}"
 
     class Meta:
+        ordering = ['pk']
         verbose_name = 'Автор'
         verbose_name_plural = 'Автори'
 
@@ -63,6 +65,7 @@ class Genre(models.Model):
         return self.name
 
     class Meta:
+        ordering = ['pk']
         verbose_name = 'Жанр'
         verbose_name_plural = 'Жанри'
 
@@ -83,6 +86,7 @@ class OrderItem(models.Model):
         super(OrderItem, self).save(*args, **kwargs)
 
     class Meta:
+        ordering = ['pk']
         verbose_name = 'Замовлений товар'
         verbose_name_plural = 'Замовлені товари'
 
@@ -95,5 +99,6 @@ class Bill(models.Model):
         return f"Bill {self.pk} - {self.date}"
 
     class Meta:
+        ordering = ['pk']
         verbose_name = 'Рахунок'
         verbose_name_plural = 'Рахунки'
