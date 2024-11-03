@@ -77,16 +77,21 @@ table th {
 }
 
 /* Button Styling */
+.button-container {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
 a.button {
+    display: inline-block;  /* Ensures each button occupies its own space */
     padding: 10px 20px;
-    border: none;
+    margin-right: 10px;
+    margin-bottom: 10px;    /* Adds spacing to avoid buttons hovering over each other */
     background-color: #333;
     font-weight: bold;
     color: #fff;
-    cursor: pointer;
     text-decoration: none;
-    margin-right: 10px;
-    margin-bottom: 5px;
     border-radius: 4px;
     transition: background-color 0.3s;
 }

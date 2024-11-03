@@ -27,9 +27,11 @@
                             <td>{{obj.description}}</td>
                             <td>{{obj.stock_quantity}}</td>
                             <td>
-                                <a href="{% url 'update_book' obj.slug %}" class="button edit-button">Оновити</a>
-                                <a href="{% url 'delete_book' obj.slug %}" class="button delete-button">Видалити</a>
-                            </td>                            
+                                <div class="button-container">
+                                    <a href="{% url 'update_book' obj.slug %}" class="button edit-button">Оновити</a>
+                                    <a href="{% url 'delete_book' obj.slug %}" class="button delete-button">Видалити</a>
+                                </div>
+                            </td>                                                       
                     </tr>
                     {% endfor %}
                 </tbody>

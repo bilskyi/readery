@@ -73,7 +73,7 @@ class UpdateBillView(BaseUpdateView):
     form_class = DynamicModelForm.create(Bill)
 
 
-class BaseDeleteView(generic.DeleteView):
+class BaseDeleteView(ModelSuccessUrlMixin, generic.DeleteView):
     template_name = 'base/delete.html'
 
 

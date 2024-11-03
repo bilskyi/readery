@@ -20,7 +20,7 @@
                             <td>{{obj.date}}</td>
                             <td>{{obj.total_amount}}</td>
                         <td>
-                            <div>
+                            <div class="button-container">
                                 <a href="{% url 'update_bill' obj.pk %}" class="button edit-button">Оновити</a>
                                 <a href="{% url 'delete_bill' obj.pk %}" class="button delete-button">Видалити</a>
                             </div>

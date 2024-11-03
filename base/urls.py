@@ -10,28 +10,28 @@ urlpatterns = [
     # Book URLs
     path('books/', BookView.as_view(), name='book_list'),
     path('books/update/<slug:slug>/', UpdateBookView.as_view(), name='update_book'),
-    path('books/delete/<slug:slug>/', DeleteBookView.as_view(), name='book_delete'),
+    path('books/delete/<slug:slug>/', DeleteBookView.as_view(), name='delete_book'),
 
 
     # Author URLs
     path('authors/', AuthorView.as_view(), name='author_list'),
     path('authors/update/<slug:slug>/', UpdateAuthorView.as_view(), name='update_author'),
-    path('authors/delete/<slug:slug>/', DeleteAuthorView.as_view(), name='author_delete'),
+    path('authors/delete/<slug:slug>/', DeleteAuthorView.as_view(), name='delete_author'),
 
     # Genre URLs
     path('genres/', GenreView.as_view(), name='genre_list'),
     path('genres/update/<slug:slug>/', UpdateGenreView.as_view(), name='update_genre'),
-    path('genres/delete/<slug:slug>/', DeleteGenreView.as_view(), name='genre_delete'),
+    path('genres/delete/<slug:slug>/', DeleteGenreView.as_view(), name='delete_genre'),
 
     # OrderItem URLs
     path('orders/', OrderItemView.as_view(), name='orderitem_list'),
     path('orders/update/<int:pk>/', UpdateOrderItemView.as_view(), name='update_orderitem'),
-    path('orders/delete/<int:pk>/', DeleteOrderItemView.as_view(), name='orderitem_delete'),
+    path('orders/delete/<int:pk>/', DeleteOrderItemView.as_view(), name='delete_orderitem'),
 
     # Bill URLs
     path('bills/', BillView.as_view(), name='bill_list'),
     path('bills/update/<int:pk>/', UpdateBillView.as_view(), name='update_bill'),
-    path('bills/delete/<int:pk>/', DeleteBillView.as_view(), name='bill_delete'),
+    path('bills/delete/<int:pk>/', DeleteBillView.as_view(), name='delete_bill'),
 
 
     # JSON resopnses
