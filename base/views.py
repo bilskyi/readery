@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views import generic
 from .mixins import ModelContextMixin, ModelSuccessUrlMixin, ModelFormMixin
 from .forms import DynamicModelForm, OrderItemForm
@@ -42,3 +42,56 @@ class BillView(ModelContextMixin, ModelFormMixin, ModelSuccessUrlMixin, generic.
     template_name = 'base/bills.html'
     form_class = DynamicModelForm.create(Bill)
     extra_context = {'add_button_name': 'Додати новий чек'}
+
+
+class BaseUpdateView(ModelFormMixin, ModelSuccessUrlMixin, generic.UpdateView):
+    template_name = 'base/update.html'
+
+
+class UpdateBookView(BaseUpdateView):
+    model = Book
+    form_class = DynamicModelForm.create(Book)
+
+
+class UpdateAuthorView(BaseUpdateView):
+    model = Author
+    form_class = DynamicModelForm.create(Author)
+
+
+class UpdateGenreView(BaseUpdateView):
+    model = Genre
+    form_class = DynamicModelForm.create(Genre)
+
+
+class UpdateOrderItemView(BaseUpdateView):
+    model = OrderItem
+    form_class = DynamicModelForm.create(OrderItem)
+
+
+class UpdateBillView(BaseUpdateView):
+    model = Bill
+    form_class = DynamicModelForm.create(Bill)
+
+
+class BaseDeleteView(generic.DeleteView):
+    template_name = 'base/delete.html'
+
+
+class DeleteBookView(BaseDeleteView):
+    model = Book
+
+
+class DeleteAuthorView(BaseDeleteView):
+    model = Author
+
+
+class DeleteGenreView(BaseDeleteView):
+    model = Genre
+
+
+class DeleteOrderItemView(BaseDeleteView):
+    model = OrderItem
+
+
+class DeleteBillView(BaseDeleteView):
+    model = Bill

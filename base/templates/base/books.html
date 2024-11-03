@@ -27,8 +27,8 @@
                             <td>{{obj.description}}</td>
                             <td>{{obj.stock_quantity}}</td>
                             <td>
-                                <button class="edit-button" onclick="updateBook(this)">Оновити</button>
-                                <button class="delete-button" onclick="deleteBook(this)">Видалити</button>
+                                <a href="{% url 'update_book' obj.slug %}" class="button edit-button">Оновити</a>
+                                <a href="{% url 'delete_book' obj.slug %}" class="button delete-button">Видалити</a>
                             </td>                            
                     </tr>
                     {% endfor %}

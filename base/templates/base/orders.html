@@ -22,8 +22,8 @@
                             <td>{{obj.quantity}}</td>
                             <td>{{obj.price}}</td>
                         <td>
-                            <button class="edit-button" onclick="updateBook(this)">Оновити</button>
-                            <button class="delete-button" onclick="deleteBook(this)">Видалити</button>
+                            <a href="{% url 'update_orderitem' obj.pk %}" class="button edit-button">Оновити</a>
+                            <a href="{% url 'delete_orderitem' obj.pk %}" class="button delete-button">Видалити</a>
                         </td>
                     </tr>
                     {% endfor %}

@@ -39,6 +39,7 @@ class ModelContextMixin:
 
 class ModelFormMixin:
     def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
         self.object_list = self.get_queryset()
 
         form = self.get_form()

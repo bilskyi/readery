@@ -20,8 +20,8 @@
                             <td>{{obj.name}}</td>
                             <td>{{obj.slug}}</td>
                         <td>
-                            <button class="edit-button" onclick="updateBook(this)">Оновити</button>
-                            <button class="delete-button" onclick="deleteBook(this)">Видалити</button>
+                            <a href="{% url 'update_genre' obj.slug %}" class="button edit-button">Оновити</a>
+                            <a href="{% url 'delete_genre' obj.slug %}" class="button delete-button">Видалити</a>
                         </td>
                     </tr>
                     {% endfor %}

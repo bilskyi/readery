@@ -20,8 +20,10 @@
                             <td>{{obj.date}}</td>
                             <td>{{obj.total_amount}}</td>
                         <td>
-                            <button class="edit-button" onclick="updateBook(this)">Оновити</button>
-                            <button class="delete-button" onclick="deleteBook(this)">Видалити</button>
+                            <div>
+                                <a href="{% url 'update_bill' obj.pk %}" class="button edit-button">Оновити</a>
+                                <a href="{% url 'delete_bill' obj.pk %}" class="button delete-button">Видалити</a>
+                            </div>
                         </td>
                     </tr>
                     {% endfor %}

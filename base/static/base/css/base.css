@@ -68,7 +68,7 @@ table {
 
 table th, table td {
     border: 1px solid #ddd;
-    padding: 10px;
+    padding: 15px;
     text-align: left;
 }
 
@@ -77,13 +77,14 @@ table th {
 }
 
 /* Button Styling */
-button {
+a.button {
     padding: 10px 20px;
     border: none;
     background-color: #333;
     font-weight: bold;
     color: #fff;
     cursor: pointer;
+    text-decoration: none;
     margin-right: 10px;
     margin-bottom: 5px;
     border-radius: 4px;
@@ -94,19 +95,19 @@ button:hover {
     background-color: #444;
 }
 
-button.edit-button {
+a.button.edit-button {
     background-color: #1898f4; /* Change to blue for edit button */
 }
 
-button.delete-button {
+a.button.delete-button {
     background-color: #e43838; /* Change to red for delete button */
 }
 
-button.edit-button:hover {
+a.button.edit-button:hover {
     background-color: #0c81d5; /* Darker shade for hover effect */
 }
 
-button.delete-button:hover {
+a.button.delete-button:hover {
     background-color: #c93030; /* Darker shade for hover effect */
 }
 
