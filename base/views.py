@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.cache import cache
 from django.urls import reverse, reverse_lazy
 from django.views import generic
 from .mixins import ModelContextMixin, ModelSuccessUrlMixin, ModelFormMixin
@@ -76,6 +77,16 @@ class UpdateBillView(BaseUpdateView):
 class BaseDeleteView(ModelSuccessUrlMixin, generic.DeleteView):
     template_name = 'base/delete.html'
 
+    def post(self, request, *args, **kwargs):
+        model_name = self.model.__name__
+        queryset_cache_key = f'{model_name}_queryset'
+        
+        response = super().post(request, *args, **kwargs)
+        
+        cache.delete(queryset_cache_key)
+        
+        return response
+    
 
 class DeleteBookView(BaseDeleteView):
     model = Book

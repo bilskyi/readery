@@ -4,14 +4,8 @@
 
 <form method="post">
     {% csrf_token %}
-    
-    {% for field in objects %}
-        <div class="form-group">
-            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-            {{ field }}
-        </div>
-    {% endfor %}
-    
+    <h1>Ви впевнені що хочете видалати {{object}}?</h1>
+    <br>
     <button type="submit">Видалити</button>
 </form>
 
