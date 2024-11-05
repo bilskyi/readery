@@ -5,6 +5,7 @@ from django.utils.text import slugify
 
 class Book(models.Model):
     isbn = models.CharField(
+        max_length=13,
         unique=True, 
         validators=[RegexValidator(regex='^.{13}$', message='Length has to be 13', code='nomatch')], 
         verbose_name='ISBN'
