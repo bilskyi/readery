@@ -48,6 +48,11 @@ class BillView(ModelContextMixin, ModelFormMixin, ModelSuccessUrlMixin, generic.
 class BaseUpdateView(ModelFormMixin, ModelSuccessUrlMixin, generic.UpdateView):
     template_name = 'base/update.html'
 
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+
+        return super().post(request, *args, **kwargs)
+
 
 class UpdateBookView(BaseUpdateView):
     model = Book
