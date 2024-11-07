@@ -27,6 +27,10 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
+    def get_searchable_text(self):
+        # Explicitly convert numeric fields to strings
+        return f"{self.isbn} {self.title} {self.author} {self.genre} {self.price} {self.publication_date} {self.description} {self.stock_quantity}"
+
     class Meta:
         ordering = ['pk']
         verbose_name = 'Книга'
@@ -47,6 +51,12 @@ class Author(models.Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
+    def get_searchable_text(self):
+        """
+        Combines first name, last name, and bio for full-text search.
+        """
+        return f"{self.first_name} {self.last_name} {self.bio}"
+    
     class Meta:
         ordering = ['pk']
         verbose_name = 'Автор'
@@ -63,6 +73,13 @@ class Genre(models.Model):
         super(Genre, self).save(*args, **kwargs)
 
     def __str__(self):
+        return self.name
+    
+
+    def get_searchable_text(self):
+        """
+        Returns the genre name for full-text search.
+        """
         return self.name
 
     class Meta:
@@ -86,6 +103,12 @@ class OrderItem(models.Model):
 
         super(OrderItem, self).save(*args, **kwargs)
 
+    def get_searchable_text(self):
+        """
+        Combines book title, ISBN, quantity, and price for full-text search.
+        """
+        return f"{self.book.title} {self.book.isbn} {self.quantity} {self.price}"
+
     class Meta:
         ordering = ['pk']
         verbose_name = 'Замовлений товар'
@@ -99,6 +122,12 @@ class Bill(models.Model):
     def __str__(self):
         return f"Bill {self.pk} - {self.date}"
 
+    def get_searchable_text(self):
+        """
+        Combines the bill date and total amount for full-text search.
+        """
+        return f"{self.date} {self.total_amount}"
+    
     class Meta:
         ordering = ['pk']
         verbose_name = 'Рахунок'
