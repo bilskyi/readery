@@ -4,7 +4,7 @@
 
 <h2>{{ model_name|title }}</h2>
 
-<input type="text" placeholder="Пошук книг за назвою, автором або жанром..." id="search-books">
+{% include 'base/include/search_bar.html' %}
 
 <div class="form-container" id="form-container" style="display: {% if form.errors %} block {% else %} none {% endif %};">
     <h3>{{ add_button_name }}</h3>

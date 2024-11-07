@@ -1,0 +1,27 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+{% include 'base/include/search_bar.html' %}
+
+    <h2>Результати пошуку для: "{{ query }}"</h2>
+    <div>
+        {% if results %}
+            <ul>
+                {% for result in results %}
+                    <li>
+                        <h3>{{ result.model_name }}</h3>
+                        <ul>
+                            {% for field, value in result.fields.items %}
+                                <li><strong>{{ field }}:</strong> {{ value }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <hr>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Не знайдено результатів для "{{ query }}".</p>
+        {% endif %}
+    </div>
+{% endblock content %}

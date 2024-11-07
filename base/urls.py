@@ -6,6 +6,8 @@ from . import utils
 urlpatterns = [
     # Home URL
     path('', RedirectView.as_view(url='books/', permanent=True)),
+    path('search/', SearchView.as_view(), name='search'),
+
 
     # Book URLs
     path('books/', BookView.as_view(), name='book_list'),
