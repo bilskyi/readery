@@ -125,15 +125,12 @@ class SearchView(View):
             # Perform search across all registered models
             search_results = watson_search.search(query)
 
-            # Build results with relevant fields dynamically
             for result in search_results:
-                # Get model's fields
                 fields = {
-                    field.verbose_name: getattr(result.object, field.name, '')  # Use `field.name` to access attribute
+                    field.verbose_name: getattr(result.object, field.name, '')
                     for field in result.object._meta.fields
                 }
                 
-                # Add the model's human-readable name and the field values
                 results.append({
                     'model_name': result.object._meta.verbose_name,  # Model name
                     'fields': fields,  # Fields and values for each object
