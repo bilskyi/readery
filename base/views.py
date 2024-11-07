@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.core.cache import cache
 from django.urls import reverse, reverse_lazy
-from django.views import generic
+from django.views import View, generic
+from watson import search as watson_search
 from .mixins import ModelContextMixin, ModelSuccessUrlMixin, ModelFormMixin
 from .forms import DynamicModelForm, OrderItemForm
 from .models import Book, Author, Genre, OrderItem, Bill
@@ -111,3 +112,34 @@ class DeleteOrderItemView(BaseDeleteView):
 
 class DeleteBillView(BaseDeleteView):
     model = Bill
+    
+
+class SearchView(View):
+    template_name = 'base/search_results.html'
+
+    def get(self, request):
+        query = request.GET.get('query', '')  # Retrieve the search term from the request
+        results = []
+        
+        if query:
+            # Perform search across all registered models
+            search_results = watson_search.search(query)
+
+            # Build results with relevant fields dynamically
+            for result in search_results:
+                # Get model's fields
+                fields = {
+                    field.verbose_name: getattr(result.object, field.name, '')  # Use `field.name` to access attribute
+                    for field in result.object._meta.fields
+                }
+                
+                # Add the model's human-readable name and the field values
+                results.append({
+                    'model_name': result.object._meta.verbose_name,  # Model name
+                    'fields': fields,  # Fields and values for each object
+                })
+
+        return render(request, self.template_name, {
+            'query': query,
+            'results': results,
+        })
