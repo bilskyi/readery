@@ -4,14 +4,7 @@
         <section id="base">
             {% include 'base/include/form.html' %}
             <table>
-                <thead>
-                    <tr>
-                        {% for field in fields %}
-                            <th>{{field}}</th>
-                        {% endfor %}
-                        <th>Дії</th>
-                    </tr>
-                </thead>
+                {% include 'base/include/model_fields.html' %}
                 <tbody id="books-table-body">
                     {% for obj in object_list %}
                     <tr>
@@ -24,7 +17,7 @@
                             <td>{{obj.genre}}</td>
                             <td>{{obj.price}}</td>
                             <td>{{obj.publication_date}}</td>
-                            <td>{{obj.description}}</td>
+                            <td>{{obj.description|truncatewords:7}}</td>
                             <td>{{obj.stock_quantity}}</td>
                             <td>
                                 <div class="button-container">

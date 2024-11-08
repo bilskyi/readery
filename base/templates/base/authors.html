@@ -4,14 +4,8 @@
         <section id="base">
             {% include 'base/include/form.html' %}
             <table>
-                <thead>
-                    <tr>
-                        {% for field in fields %}
-                            <th>{{field}}</th>
-                        {% endfor %}
-                        <th>Дії</th>
-                    </tr>
-                </thead>
+
+                {% include 'base/include/model_fields.html' %}
                 <tbody id="books-table-body">
                     {% for obj in object_list %}
                     <tr>
