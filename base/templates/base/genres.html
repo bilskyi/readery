@@ -14,8 +14,8 @@
                             <td>{{obj.slug}}</td>
                         <td>
                             <div class="button-container">
-                                <a href="{% url 'update_genre' obj.slug %}" class="button edit-button">Оновити</a>
-                                <a href="{% url 'delete_genre' obj.slug %}" class="button delete-button">Видалити</a>
+                                <a href="{% url 'update_genre' obj.slug %}" class="button edit-button"><i class="fas fa-pen"></i></a>
+                                <a href="{% url 'delete_genre' obj.slug %}" class="button delete-button"><i class="fas fa-trash"></i></a>
                             </div>
                         </td>
                     </tr>

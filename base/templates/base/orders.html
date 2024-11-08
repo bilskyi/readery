@@ -16,8 +16,8 @@
                             <td>{{obj.price}}</td>
                         <td>
                             <div class="button-container">
-                                <a href="{% url 'update_orderitem' obj.pk %}" class="button edit-button">Оновити</a>
-                                <a href="{% url 'delete_orderitem' obj.pk %}" class="button delete-button">Видалити</a>
+                                <a href="{% url 'update_orderitem' obj.pk %}" class="button edit-button"><i class="fas fa-pen"></i></a>
+                                <a href="{% url 'delete_orderitem' obj.pk %}" class="button delete-button"><i class="fas fa-trash"></i></a>
                             </div>
                         </td>
                     </tr>

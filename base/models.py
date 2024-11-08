@@ -17,7 +17,7 @@ class Book(models.Model):
     price = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Ціна')
     publication_date = models.DateField(verbose_name='Дата публікації')
     description = models.TextField(blank=True, null=True, verbose_name='Опис')
-    stock_quantity = models.IntegerField(verbose_name='Кількість на складі')
+    stock_quantity = models.IntegerField(verbose_name='Наявність')
 
     def save(self, *args, **kwargs):
         if not self.slug:

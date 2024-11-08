@@ -1,7 +1,16 @@
 <thead>
     <tr>
         {% for field in fields %}
-            <th>{{field}} <i class="fas fa-filter fa-xs" style="color: #333;"></i></th>
+        <form action="" method="get">
+            <th>
+                {{ field.verbose_name }}  <!-- This now shows the actual field.name name (e.g., 'title') -->
+                <input type="hidden" name="orderby" value="{{ field.name }}">
+                <input type="hidden" name="direction" value="{% if request.GET.orderby == field.name and request.GET.direction == 'asc' %}desc{% else %}asc{% endif %}">
+                <button type="submit" class="filter-button">
+                    <i class="fas fa-filter fa-xs filter-button" style="color: {% if request.GET.orderby == field.name %}#041E42{% else %}#333{% endif %};"></i>
+                </button>
+            </th>
+        </form>
         {% endfor %}
         <th>Дії</th>
     </tr>

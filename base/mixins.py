@@ -16,6 +16,10 @@ class ModelContextMixin:
         if queryset is None:
             queryset = self.model.objects.all().select_related()
             cache.set(queryset_cache_key, queryset)
+        
+        orderby = self.request.GET.get('orderby', None)
+        if orderby:
+            queryset = queryset.order_by(orderby)
 
         return queryset
 
@@ -28,9 +32,9 @@ class ModelContextMixin:
             fields = cache.get(fields_cache_key)
             
             if fields is None:
-                fields = [field.verbose_name for field in model._meta.fields]
+                fields = [field for field in model._meta.fields]
                 cache.set(fields_cache_key, fields)
-    
+
             context['fields'] = fields
             context['model_name'] = model._meta.verbose_name_plural
         
