@@ -16,10 +16,15 @@ class ModelContextMixin:
         if queryset is None:
             queryset = self.model.objects.all().select_related()
             cache.set(queryset_cache_key, queryset)
-        
+
         orderby = self.request.GET.get('orderby', None)
+        direction = self.request.GET.get('direction', 'asc')
+
         if orderby:
-            queryset = queryset.order_by(orderby)
+            if direction == 'asc':
+                queryset = queryset.order_by(orderby)
+            else:
+                queryset = queryset.order_by(f'-{orderby}')
 
         return queryset
 
