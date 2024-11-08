@@ -244,6 +244,31 @@ form button[type="submit"] {
     background: none;
 }
 
+/* Clear Filter Button Styling */
+.clear-filter-button {
+    background-color: #f0ad4e; /* Amber color for clear filter button */
+    color: #fff; /* White text */
+    padding: 8px 20px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Hover effect for clear filter button */
+.clear-filter-button:hover {
+    background-color: #ec971f; /* Darker amber for hover effect */
+}
+
+/* Disabled state (if applicable) */
+.clear-filter-button:disabled {
+    background-color: #e0e0e0; /* Grey for disabled state */
+    color: #ccc; /* Light text color */
+    cursor: not-allowed;
+}
+
 form button[type="submit"]:hover {
     background-color: #444;
 }

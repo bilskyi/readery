@@ -1,3 +1,11 @@
+{% if request.GET.orderby %}
+<form action="" method="get">
+    <button type="submit" class="clear-filter-button" name="clear_order" value="true">
+        Clear Ordering
+    </button>
+</form>
+{% endif %}
+
 <thead>
     <tr>
         {% for field in fields %}
@@ -7,7 +15,7 @@
                 <input type="hidden" name="orderby" value="{{ field.name }}">
                 <input type="hidden" name="direction" value="{% if request.GET.orderby == field.name and request.GET.direction == 'asc' %}desc{% else %}asc{% endif %}">
                 <button type="submit" class="filter-button">
-                    <i class="fas fa-filter fa-xs filter-button" style="color: {% if request.GET.orderby == field.name %}#041E42{% else %}#333{% endif %};"></i>
+                    <i class="fas fa-filter fa-xs filter-button" style="color: {% if request.GET.orderby == field.name %}#ec971f{% else %}#333{% endif %};"></i>
                 </button>
             </th>
         </form>
