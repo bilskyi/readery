@@ -22,11 +22,12 @@ class ModelContextMixin:
         direction = self.request.GET.get('direction', 'asc')
 
         if clear_order == 'true':
-            return queryset
+            return queryset.all()
+
         if orderby:
             if direction == 'asc':
                 queryset = queryset.order_by(orderby)
-            else:
+            elif direction == 'desc':
                 queryset = queryset.order_by(f'-{orderby}')
 
         return queryset
