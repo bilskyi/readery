@@ -17,12 +17,8 @@ class ModelContextMixin:
             queryset = self.model.objects.all().select_related()
             cache.set(queryset_cache_key, queryset)
 
-        clear_order = self.request.GET.get('clear_order', None)
         orderby = self.request.GET.get('orderby', None)
         direction = self.request.GET.get('direction', 'asc')
-
-        if clear_order == 'true':
-            return queryset.all()
 
         if orderby:
             if direction == 'asc':

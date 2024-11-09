@@ -1,10 +1,11 @@
 {% if request.GET.orderby %}
-<form action="" method="get">
-    <button type="submit" class="clear-filter-button" name="clear_order" value="true">
-        Clear Ordering
-    </button>
-</form>
+    <form action="" method="get">
+        <button type="submit" class="clear-filter-button" onclick="clearOrdering(event)">
+            Clear Ordering
+        </button>
+    </form>
 {% endif %}
+
 
 <thead>
     <tr>
@@ -23,3 +24,13 @@
         <th>Дії</th>
     </tr>
 </thead>
+
+<script>
+    function clearOrdering(event) {
+        event.preventDefault();
+        const url = new URL(window.location);
+        url.searchParams.delete('orderby');
+        url.searchParams.delete('direction');
+        window.location.href = url;
+    }
+</script>
