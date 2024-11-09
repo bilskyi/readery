@@ -10,7 +10,11 @@
             <ul>
                 {% for result in results %}
                     <li>
-                        <h3><a href="{{ result.obj.get_absolute_url }}" class="search-result">{{ model_name }}</a></h3>
+                        <h3>
+                            <a href="{{ result.obj.get_update_url }}" class="search-result">{{ model_name }}</a>
+                            <a href="{{ result.obj.get_delete_url }}" class="trash-bin"><i class="fas fa-trash"></i></a>
+                        </h3>
+                        
                         <ul>
                             {% for field, value in result.fields.items %}
                                 <li><strong>{{ field }}:</strong> {{ value }}</li>

@@ -14,8 +14,8 @@
                             <td>{{obj.total_amount}}</td>
                         <td>
                             <div class="button-container">
-                                <a href="{% url 'update_bill' obj.pk %}" class="button edit-button"><i class="fas fa-pen"></i></a>
-                                <a href="{% url 'delete_bill' obj.pk %}" class="button delete-button"><i class="fas fa-trash"></i></a>
+                                <a href="{{ obj.get_update_url }}" class="button edit-button"><i class="fas fa-pen"></i></a>
+                                <a href="{{ obj.get_delete_url }}" class="button delete-button"><i class="fas fa-trash"></i></a>
                             </div>
                         </td>
                     </tr>
