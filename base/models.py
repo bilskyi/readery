@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import RegexValidator
+from django.urls import reverse
 from django.utils.text import slugify
 
 
@@ -31,6 +32,9 @@ class Book(models.Model):
         # Explicitly convert numeric fields to strings
         return f"{self.isbn} {self.title} {self.author} {self.genre} {self.price} {self.publication_date} {self.description} {self.stock_quantity}"
 
+    def get_absolute_url(self):
+        return reverse('update_book', kwargs={'slug': self.slug})
+    
     class Meta:
         ordering = ['pk']
         verbose_name = 'Книга'
@@ -57,6 +61,9 @@ class Author(models.Model):
         """
         return f"{self.first_name} {self.last_name} {self.bio}"
     
+    def get_absolute_url(self):
+        return reverse('update_author', kwargs={'slug': self.slug})
+    
     class Meta:
         ordering = ['pk']
         verbose_name = 'Автор'
@@ -81,6 +88,9 @@ class Genre(models.Model):
         Returns the genre name for full-text search.
         """
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('update_genre', kwargs={'slug': self.slug})
 
     class Meta:
         ordering = ['pk']
@@ -108,6 +118,9 @@ class OrderItem(models.Model):
         Combines book title, ISBN, quantity, and price for full-text search.
         """
         return f"{self.book.title} {self.book.isbn} {self.quantity} {self.price}"
+    
+    def get_absolute_url(self):
+        return reverse('update_orederitem', kwargs={'pk': self.pk})
 
     class Meta:
         ordering = ['pk']
@@ -127,6 +140,9 @@ class Bill(models.Model):
         Combines the bill date and total amount for full-text search.
         """
         return f"{self.date} {self.total_amount}"
+    
+    def get_absolute_url(self):
+        return reverse('update_bill', kwargs={'pk': self.pk})
     
     class Meta:
         ordering = ['pk']

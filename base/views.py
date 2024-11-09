@@ -132,8 +132,8 @@ class SearchView(View):
                 }
                 
                 results.append({
-                    'model_name': result.object._meta.verbose_name,  # Model name
-                    'fields': fields,  # Fields and values for each object
+                    'obj': result.object,
+                    'fields': fields,
                 })
 
         return render(request, self.template_name, {

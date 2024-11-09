@@ -205,6 +205,15 @@ input[type="checkbox"] {
     margin-bottom: 15px;
 }
 
+.search-result {
+    text-decoration: none;
+    color: #131313;
+}
+
+.search-result:hover {
+    background-color: #F4CE14;
+}
+
 label {
     font-weight: bold;
     margin-bottom: 5px;
