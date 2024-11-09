@@ -389,10 +389,101 @@ footer {
     font-weight: bold;
 }
 
-/* Responsive Pagination */
+/* Adjustments for mobile screens */
 @media (max-width: 768px) {
-    .pagination .page-item .page-link {
-        font-size: 1.2vw;
-        padding: 0.8vw 1vw;
+    /* General font and layout adjustments */
+    header, footer {
+        font-size: 2.8vw;
+        padding: 2vw 0;
+    }
+
+    main {
+        width: 95vw;
+        padding: 3vw;
+    }
+
+    h1 {
+        font-size: 5vw;
+    }
+
+    h2 {
+        font-size: 5vw;
+    }
+
+    ul {
+        padding-inline-start: 1vw;
+    }
+
+    ul li {
+        font-size: 4vw;
+    }
+
+    button.add-new-button {
+        font-size: 3vw;
+        background-color: #72BF78;
+    }
+.section-button button {
+    color: #fff;
+    padding: 1vw 2vw;
+    border: none;
+    border-radius: 0.8vw;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+    form button[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.8vw 2vw;
+    font-size: 3.5vw;
+    cursor: pointer;
+    border-radius: 0.8vw;
+    transition: background-color 0.3s;
+}
+
+    label {
+        font-size: 3vw;
+        font-weight: bold;
+        margin-bottom: 0.5vw;
+        display: block;
+    }
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="number"],
+textarea,
+select {
+    padding: 0.8vw;
+    width: 100%;
+    max-width: 40vw;
+    margin-bottom: 1vw;
+    border: 0.1vw solid #ddd;
+    border-radius: 0.8vw;
+    font-size: 3.5vw;
+}
+
+textarea {
+    height: 10vw;
+    resize: vertical;
+}
+
+input[type="checkbox"] {
+    margin-right: 0.8vw;
+    transform: scale(1.2);
+    vertical-align: middle;
+}
+
+    /* Tab Navigation - optimized for mobile */
+    .tab {
+        padding: 2vw 0;
+    }
+
+    .tab a {
+        padding: 3vw 3.8vw;
+        font-size: 3vw;
     }
 }

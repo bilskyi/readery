@@ -17,7 +17,7 @@
                         
                         <ul>
                             {% for field, value in result.fields.items %}
-                                <li><strong>{{ field }}:</strong> {{ value }}</li>
+                                <li><strong>{{ field }}:</strong> {{ value|truncatewords:8 }}</li>
                             {% endfor %}
                         </ul>
                     </li>
