@@ -9,7 +9,7 @@ body {
 header {
     background-color: #333;
     color: #fff;
-    padding: 10px 0;
+    padding: 1vw 0;
     text-align: center;
 }
 
@@ -22,15 +22,15 @@ html, body {
     padding: 0;
 }
 
-/* Main content with fixed width */
+/* Main content with responsive width */
 main {
-    flex-grow: 1;               /* Fills available vertical space */
-    width: 80%;                 /* Fixed width for the main content */
-    max-width: 80%;           /* Optional: set a max-width if you want to limit it */
-    margin: 0 auto;             /* Centers the main content */
-    padding: 20px;
+    flex-grow: 1;
+    width: 80vw;
+    max-width: 80vw;
+    margin: 0 auto;
+    padding: 2vw;
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 1vw rgba(0, 0, 0, 0.1);
 }
 
 /* Footer Styling */
@@ -38,13 +38,18 @@ footer {
     background-color: #333;
     color: #fff;
     text-align: center;
-    padding: 10px 0;
+    padding: 1vw 0;
     width: 100%;
+    font-size: 1vw;
 }
 
 h1 {
     margin: 0;
-    font-size: 24px;
+    font-size: 2vw;
+}
+
+h2 {
+    font-size: 1.5vw;
 }
 
 /* Tab Navigation Styling */
@@ -52,112 +57,120 @@ h1 {
     display: flex;
     justify-content: center;
     background-color: #333;
-    padding: 10px 0;
+    padding: 1vw 0;
 }
 
 .tab a {
     color: white;
     text-decoration: none;
-    padding: 10px 15px;
-    margin: 0 5px;
+    padding: 1vw 1.5vw;
+    margin: 0 0.5vw;
     font-weight: bold;
+    font-size: 1vw;
 }
 
 .tab a:hover {
     background-color: #555;
-    border-radius: 4px;
+    border-radius: 0.4vw;
 }
 
 .tab a.active {
     background-color: #444;
-    border-radius: 4px;
+    border-radius: 0.4vw;
 }
 
 .tabcontent {
     display: none;
-    padding: 20px;
+    padding: 2vw;
     border-top: none;
 }
 
 /* Main Content Styling */
 main {
-    max-width: 80%;
+    max-width: 80vw;
     margin: 0 auto;
-    padding: 20px;
+    padding: 2vw;
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 1vw rgba(0, 0, 0, 0.1);
 }
 
 /* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
+    margin-bottom: 2vw;
 }
 
 table th, table td {
-    border: 1px solid #ddd;
-    padding: 8px;
+    border: 0.1vw solid #ddd;
+    padding: 0.8vw;
     text-align: left;
+    font-size: 1vw;
 }
 
 table th {
     background-color: #f8f8f8;
+    white-space: nowrap;
+    padding: 1vw;
+    text-align: left;
+    font-size: 1vw;
 }
-
-table th {
-    white-space: nowrap;  /* Prevents wrapping of text in header */
-    padding: 10px;        /* Adjust padding for better spacing */
-    text-align: left;     /* Aligns content to the left */
-}
-
 
 /* Button Styling */
 .button-container {
     display: flex;
-    gap: 10px;
+    gap: 1vw;
     flex-wrap: wrap;
 }
 
 a.button {
-    display: inline-block;  /* Ensures each button occupies its own space */
-    padding: 10px 20px;
-    margin-right: 10px;
-    margin-bottom: 10px;    /* Adds spacing to avoid buttons hovering over each other */
+    display: inline-block;
+    padding: 1vw 2vw;
+    margin-right: 1vw;
+    margin-bottom: 1vw;
     background-color: #333;
     font-weight: bold;
     color: #fff;
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: 0.4vw;
     transition: background-color 0.3s;
 }
 
-button:hover {
+a.button:hover {
     background-color: #444;
 }
 
 a.button.edit-button {
-    background-color: #1898f4; /* Change to blue for edit button */
+    background-color: #1898f4;
 }
 
 a.button.delete-button {
-    background-color: #e43838; /* Change to red for delete button */
+    background-color: #e43838;
 }
 
 a.button.edit-button:hover {
-    background-color: #0c81d5; /* Darker shade for hover effect */
+    background-color: #0c81d5;
 }
 
 a.button.delete-button:hover {
-    background-color: #c93030; /* Darker shade for hover effect */
+    background-color: #c93030;
 }
 
 button.add-new-button {
+    font-size: 1vw;
     background-color: #72BF78;
 }
 
 button.add-new-button:hover {
     background-color: #5e9c63;
+}
+
+ul {
+    padding-inline-start: 1vw;
+}
+
+ul li {
+    font-size: 1vw;
 }
 
 /* Input, Textarea, Checkbox, and Date Styling */
@@ -168,33 +181,33 @@ input[type="date"],
 input[type="number"],
 textarea,
 select {
-    padding: 10px;
+    padding: 0.8vw;
     width: 100%;
-    max-width: 600px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
+    max-width: 40vw;
+    margin-bottom: 1vw;
+    border: 0.1vw solid #ddd;
+    border-radius: 0.4vw;
+    font-size: 1vw;
 }
 
 textarea {
-    height: 100px; /* Specific height for text areas */
-    resize: vertical; /* Allow vertical resizing only */
+    height: 10vw;
+    resize: vertical;
 }
 
 input[type="checkbox"] {
-    margin-right: 8px;
-    transform: scale(1.2); /* Slightly larger checkboxes */
+    margin-right: 0.8vw;
+    transform: scale(1.2);
     vertical-align: middle;
 }
 
 .form-container {
-    margin: 20px 0;
-    padding: 20px;
+    margin: 2vw 0;
+    padding: 2vw;
     display: none;
     background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    border: 0.1vw solid #ddd;
+    border-radius: 0.4vw;
 }
 
 .form-container h3 {
@@ -202,7 +215,7 @@ input[type="checkbox"] {
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 1.5vw;
 }
 
 .search-result {
@@ -223,16 +236,17 @@ input[type="checkbox"] {
 }
 
 label {
+    font-size: 1vw;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 0.5vw;
     display: block;
 }
 
 /* Error Message Styling */
 .error-message {
     color: #d9534f;
-    font-size: 14px;
-    margin-top: 5px;
+    font-size: 1.4vw;
+    margin-top: 0.5vw;
 }
 
 /* Submit Button Styling */
@@ -240,21 +254,21 @@ form button[type="submit"] {
     background-color: #333;
     color: #fff;
     border: none;
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 0.8vw 2vw;
+    font-size: 1vw;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 0.4vw;
     transition: background-color 0.3s;
 }
 
 .filter-button {
     background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
 }
 
 .filter-button:hover {
@@ -263,26 +277,24 @@ form button[type="submit"] {
 
 /* Clear Filter Button Styling */
 .clear-filter-button {
-    background-color: #f0ad4e; /* Amber color for clear filter button */
-    color: #fff; /* White text */
-    padding: 8px 20px;
-    margin: 10px 0;
+    background-color: #f0ad4e;
+    color: #fff;
+    padding: 0.8vw 2vw;
+    margin: 1vw 0;
     border: none;
-    border-radius: 4px;
-    font-size: 16px;
+    border-radius: 0.4vw;
+    font-size: 1vw;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
-/* Hover effect for clear filter button */
 .clear-filter-button:hover {
-    background-color: #ec971f; /* Darker amber for hover effect */
+    background-color: #ec971f;
 }
 
-/* Disabled state (if applicable) */
 .clear-filter-button:disabled {
-    background-color: #e0e0e0; /* Grey for disabled state */
-    color: #ccc; /* Light text color */
+    background-color: #e0e0e0;
+    color: #ccc;
     cursor: not-allowed;
 }
 
@@ -296,69 +308,63 @@ footer {
     background-color: #333;
     color: #fff;
     text-align: center;
-    padding: 10px 0;
+    padding: 1vw 0;
     width: 100%;
 }
 
 /* Custom Styling for Search Input */
 #search-books {
-    padding: 10px;
+    padding: 1vw;
     width: 100%;
-    margin: 20px 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    margin: 2vw 0;
+    border: 0.1vw solid #ddd;
+    border-radius: 0.4vw;
 }
 
 /* Section Button Styling */
 .section-button {
-    margin-bottom: 20px;
+    margin-bottom: 2vw;
 }
 
 .section-button button {
     color: #fff;
-    padding: 10px 20px;
+    padding: 1vw 2vw;
     border: none;
-    border-radius: 4px;
+    border-radius: 0.4vw;
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.3s;
 }
 
-
 /* Catalog and Pagination Styles */
-
-/* Pagination Container */
 .pagination {
     display: flex;
     justify-content: center;
-    margin: 20px 0;
+    margin: 2vw 0;
 }
 
-/* Pagination UL Reset */
 .pagination ul {
     display: flex;
-    gap: 8px;
+    gap: 0.8vw;
     padding: 0;
     list-style-type: none;
 }
 
-/* Pagination Links */
 .pagination .page-item .page-link {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.4rem;
+    font-size: 1.4vw;
     color: var(--black);
     background-color: #f0f0f0;
-    padding: 10px 14px;
-    border-radius: 4px;
+    padding: 1vw 1.4vw;
+    border-radius: 0.4vw;
     text-decoration: none;
     transition: background-color 0.3s, color 0.3s;
     cursor: pointer;
-    border: 1px solid #ddd;
+    border: 0.1vw solid #ddd;
 }
 
-/* Hover & Active States */
 .pagination .page-item .page-link:hover {
     background-color: var(--green);
     color: #131313;
@@ -367,11 +373,10 @@ footer {
 .pagination .page-item.active .page-link {
     background-color: var(--dark-color);
     color: #131313;
-    border: 1px solid var(--dark-color);
+    border: 0.1vw solid var(--dark-color);
     cursor: default;
 }
 
-/* Disabled Links (First/Last on boundary pages) */
 .pagination .page-item .page-link[aria-disabled="true"] {
     color: var(--light-color);
     cursor: not-allowed;
@@ -379,7 +384,6 @@ footer {
     pointer-events: none;
 }
 
-/* Arrow Styling */
 .pagination .page-link span {
     display: inline-block;
     font-weight: bold;
@@ -388,7 +392,7 @@ footer {
 /* Responsive Pagination */
 @media (max-width: 768px) {
     .pagination .page-item .page-link {
-        font-size: 1.2rem;
-        padding: 8px 10px;
+        font-size: 1.2vw;
+        padding: 0.8vw 1vw;
     }
 }
