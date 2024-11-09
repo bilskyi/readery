@@ -32,8 +32,11 @@ class Book(models.Model):
         # Explicitly convert numeric fields to strings
         return f"{self.isbn} {self.title} {self.author} {self.genre} {self.price} {self.publication_date} {self.description} {self.stock_quantity}"
 
-    def get_absolute_url(self):
+    def get_update_url(self):
         return reverse('update_book', kwargs={'slug': self.slug})
+    
+    def get_delete_url(self):
+        return reverse('delete_book', kwargs={'slug': self.slug})
     
     class Meta:
         ordering = ['pk']
@@ -61,8 +64,11 @@ class Author(models.Model):
         """
         return f"{self.first_name} {self.last_name} {self.bio}"
     
-    def get_absolute_url(self):
+    def get_update_url(self):
         return reverse('update_author', kwargs={'slug': self.slug})
+    
+    def get_delete_url(self):
+        return reverse('delete_author', kwargs={'slug': self.slug})
     
     class Meta:
         ordering = ['pk']
@@ -89,9 +95,12 @@ class Genre(models.Model):
         """
         return self.name
 
-    def get_absolute_url(self):
+    def get_update_url(self):
         return reverse('update_genre', kwargs={'slug': self.slug})
 
+    def get_delete_url(self):
+        return reverse('delete_genre', kwargs={'slug': self.slug})
+    
     class Meta:
         ordering = ['pk']
         verbose_name = 'Жанр'
@@ -119,9 +128,12 @@ class OrderItem(models.Model):
         """
         return f"{self.book.title} {self.book.isbn} {self.quantity} {self.price}"
     
-    def get_absolute_url(self):
+    def get_update_url(self):
         return reverse('update_orderitem', kwargs={'pk': self.pk})
 
+    def get_delete_url(self):
+        return reverse('delete_orderitem', kwargs={'pk': self.pk})
+    
     class Meta:
         ordering = ['pk']
         verbose_name = 'Замовлений товар'
@@ -141,8 +153,11 @@ class Bill(models.Model):
         """
         return f"{self.date} {self.total_amount}"
     
-    def get_absolute_url(self):
+    def get_update_url(self):
         return reverse('update_bill', kwargs={'pk': self.pk})
+    
+    def get_delete_url(self):
+        return reverse('delete_bill', kwargs={'pk': self.pk})
     
     class Meta:
         ordering = ['pk']
