@@ -138,5 +138,6 @@ class SearchView(View):
 
         return render(request, self.template_name, {
             'query': query,
+            'model_name': result.object._meta.verbose_name,
             'results': results,
         })

@@ -120,7 +120,7 @@ class OrderItem(models.Model):
         return f"{self.book.title} {self.book.isbn} {self.quantity} {self.price}"
     
     def get_absolute_url(self):
-        return reverse('update_orederitem', kwargs={'pk': self.pk})
+        return reverse('update_orderitem', kwargs={'pk': self.pk})
 
     class Meta:
         ordering = ['pk']
