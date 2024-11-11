@@ -134,10 +134,10 @@ class SearchView(View):
                 results.append({
                     'obj': result.object,
                     'fields': fields,
+                    'model_name': result.object._meta.verbose_name,
                 })
 
         return render(request, self.template_name, {
             'query': query,
-            'model_name': result.object._meta.verbose_name,
             'results': results,
         })

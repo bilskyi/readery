@@ -11,7 +11,7 @@
                 {% for result in results %}
                     <li>
                         <h3>
-                            <a href="{{ result.obj.get_update_url }}" class="search-result">{{ model_name }}</a>
+                            <a href="{{ result.obj.get_update_url }}" class="search-result">{{ result.model_name }}</a>
                             <a href="{{ result.obj.get_delete_url }}" class="trash-bin"><i class="fas fa-trash"></i></a>
                         </h3>
                         
