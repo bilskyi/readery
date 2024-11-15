@@ -7,6 +7,7 @@ class BaseConfig(AppConfig):
     name = 'base'
 
     def ready(self):
+        import base.singnals
         all_models = self.get_models()
         
         for model in all_models:

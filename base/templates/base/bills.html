@@ -1,26 +1,36 @@
 {% extends 'base/base.html' %}
 {% load static %}
+
 {% block content %}
-        <section id="base">
-            {% include 'base/include/form.html' %}
-            <table>
-                {% include 'base/include/model_fields.html' %}
-                <tbody id="books-table-body">
-                    {% for obj in object_list %}
+    <section id="base">
+        <h2>Список рахунків</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Дата</th>
+                    <th>Загальна сума</th>
+                    <th>Замовлені товари</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bill in bills %}
                     <tr>
-                        <!-- FIELDS -->
-                            <td>{{obj.id}}</td>
-                            <td>{{obj.date}}</td>
-                            <td>{{obj.total_amount}}</td>
+                        <td>{{ bill.id }}</td>
+                        <td>{{ bill.date }}</td>
+                        <td>{{ bill.total_amount }}</td>
                         <td>
-                            <div class="button-container">
-                                <a href="{{ obj.get_update_url }}" class="button edit-button"><i class="fas fa-pen"></i></a>
-                                <a href="{{ obj.get_delete_url }}" class="button delete-button"><i class="fas fa-trash"></i></a>
-                            </div>
+                            <ul>
+                                {% for item in bill.order_items %}
+                                    <li>
+                                        {{ item.book.title }} - {{ item.quantity }} x {{ item.price }} грн
+                                    </li>
+                                {% endfor %}
+                            </ul>
                         </td>
                     </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </section>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
 {% endblock content %}

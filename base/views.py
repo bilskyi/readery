@@ -45,6 +45,17 @@ class BillView(ModelContextMixin, ModelFormMixin, ModelSuccessUrlMixin, generic.
     form_class = DynamicModelForm.create(Bill)
     extra_context = {'add_button_name': 'Додати новий чек'}
 
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+
+        bills = self.get_queryset()
+
+        for bill in bills:
+            bill.order_items = bill.orderitem_set.all()
+        
+        context['bills'] = bills
+        
+        return context
 
 class BaseUpdateView(ModelFormMixin, ModelSuccessUrlMixin, generic.UpdateView):
     template_name = 'base/update.html'

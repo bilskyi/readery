@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import RegexValidator
 from django.urls import reverse
 from django.utils.text import slugify
+from django.db.models import Sum
 
 
 class Book(models.Model):
@@ -119,14 +120,10 @@ class OrderItem(models.Model):
     def save(self, *args, **kwargs):
         if not self.price:
             self.price = self.book.price * self.quantity
-
         super(OrderItem, self).save(*args, **kwargs)
-
-    def get_searchable_text(self):
-        """
-        Combines book title, ISBN, quantity, and price for full-text search.
-        """
-        return f"{self.book.title} {self.book.isbn} {self.quantity} {self.price}"
+        
+        if self.bill:
+            self.bill.update_total_amount()
     
     def get_update_url(self):
         return reverse('update_orderitem', kwargs={'pk': self.pk})
@@ -147,11 +144,14 @@ class Bill(models.Model):
     def __str__(self):
         return f"Bill {self.pk} - {self.date}"
 
-    def get_searchable_text(self):
-        """
-        Combines the bill date and total amount for full-text search.
-        """
-        return f"{self.date} {self.total_amount}"
+    def save(self, *args, **kwargs):
+        self.update_total_amount()
+        super(Bill, self).save(*args, **kwargs)
+
+    def update_total_amount(self):
+        total = self.orderitem_set.aggregate(total=Sum('price'))['total'] or 0.00
+        self.total_amount = total
+        super(Bill, self).save()
     
     def get_update_url(self):
         return reverse('update_bill', kwargs={'pk': self.pk})
