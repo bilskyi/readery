@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.core.cache import cache
-from django.urls import reverse, reverse_lazy
+from django.db.models import Prefetch
 from django.views import View, generic
 from watson import search as watson_search
 from .mixins import ModelContextMixin, ModelSuccessUrlMixin, ModelFormMixin
@@ -44,15 +44,15 @@ class BillView(ModelContextMixin, ModelFormMixin, ModelSuccessUrlMixin, generic.
     template_name = 'base/bills.html'
     form_class = DynamicModelForm.create(Bill)
     extra_context = {'add_button_name': 'Додати новий чек'}
+    paginate_by = 10
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
 
-        bills = self.get_queryset()
+        bills = self.get_queryset().prefetch_related(
+        Prefetch('orderitem_set', queryset=OrderItem.objects.select_related('book')),
+    )
 
-        for bill in bills:
-            bill.order_items = bill.orderitem_set.all()
-        
         context['bills'] = bills
         
         return context

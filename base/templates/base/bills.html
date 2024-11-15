@@ -21,7 +21,7 @@
                         <td>{{ bill.total_amount }}</td>
                         <td>
                             <ul>
-                                {% for item in bill.order_items %}
+                                {% for item in bill.orderitem_set.all %}
                                     <li>
                                         {{ item.book.title }} - {{ item.quantity }} x {{ item.price }} грн
                                     </li>
