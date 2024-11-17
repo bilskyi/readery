@@ -145,13 +145,16 @@ class Bill(models.Model):
         return f"Bill {self.pk} - {self.date}"
 
     def save(self, *args, **kwargs):
-        self.update_total_amount()
+        is_new = self._state.adding
         super(Bill, self).save(*args, **kwargs)
+        
+        if is_new:
+            self.update_total_amount()
 
     def update_total_amount(self):
         total = self.orderitem_set.aggregate(total=Sum('price'))['total'] or 0.00
         self.total_amount = total
-        super(Bill, self).save()
+        self.save(update_fields=['total_amount'])
     
     def get_update_url(self):
         return reverse('update_bill', kwargs={'pk': self.pk})
