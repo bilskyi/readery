@@ -389,6 +389,34 @@ footer {
     font-weight: bold;
 }
 
+button.add-more-button {
+    font-size: 1vw;
+    background-color: #509cd5;
+    padding: 0.8vw 2vw;
+    border-radius: 0.4vw;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: inline-block;
+    margin-top: 2vw;
+    text-align: center;
+    width: auto;
+    align-self: center; /* Centers the button */
+}
+
+button.add-more-button:hover {
+    background-color: #4383b5;
+}
+
+.orderitem-form-row input,
+.orderitem-form-row select {
+    width: 90%;
+    max-width: 90%;
+    padding: 1vw;
+    font-size: 1vw;
+}
+
 /* Adjustments for mobile screens */
 @media (max-width: 768px) {
     /* General font and layout adjustments */

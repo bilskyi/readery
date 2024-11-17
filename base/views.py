@@ -1,11 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.core.cache import cache
 from django.db.models import Prefetch
 from django.views import View, generic
 from watson import search as watson_search
 from .mixins import ModelContextMixin, ModelSuccessUrlMixin, ModelFormMixin
-from .forms import DynamicModelForm, OrderItemForm
+from .forms import DynamicModelForm, OrderItemForm, OrderItemFormSet
 from .models import Book, Author, Genre, OrderItem, Bill
+from django.utils.timezone import now
+
 
 class HomeView(generic.TemplateView):
     template_name = 'base/home.html'
@@ -37,6 +39,30 @@ class OrderItemView(ModelContextMixin, ModelFormMixin, ModelSuccessUrlMixin, gen
     template_name = 'base/orders.html'
     form_class = OrderItemForm
     extra_context = {'add_button_name': 'Додати новий товар'}
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['orderitem_formset'] = OrderItemFormSet(queryset=OrderItem.objects.filter(bill=None))
+        return context
+
+    def post(self, request, *args, **kwargs):
+        # Create the Bill first
+        bill = Bill.objects.create(date=now(), total_amount=0.00)  # You can customize this as needed
+
+        # Handle the formset
+        formset = OrderItemFormSet(request.POST)
+
+        if formset.is_valid():
+            for form in formset:
+                order_item = form.save(commit=False)
+                order_item.bill = bill
+                order_item.save()
+
+            return redirect('bill_list')
+
+        context = self.get_context_data()
+        context['orderitem_formset'] = formset
+        return self.render_to_response(context)
 
 
 class BillView(ModelContextMixin, ModelFormMixin, ModelSuccessUrlMixin, generic.edit.FormMixin, generic.ListView):

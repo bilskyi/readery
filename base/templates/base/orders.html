@@ -2,7 +2,44 @@
 {% load static %}
 {% block content %}
         <section id="base">
-            {% include 'base/include/form.html' %}
+            <div class="section-button">
+                <button class="add-new-button" onclick="toggleForm()">{{ add_button_name }}</button>
+            </div>
+            
+            <h2>{{ model_name|title }}</h2>
+            
+            {% include 'base/include/search_bar.html' %}
+            
+            <div class="form-container" id="form-container" style="display: {% if form.errors %} block {% else %} none {% endif %};">
+                <h3>{{ add_button_name }}</h3>
+                
+            <form method="post">
+                {% csrf_token %}
+                {{ orderitem_formset.management_form }}
+                
+                <table id="orderitem-table">
+                    <thead>
+                        <tr>
+                            <th>Книга</th>
+                            <th>Кількість</th>
+                            <th>Ціна</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orderitem-formset">
+                        {% for form in orderitem_formset %}
+                        <tr class="orderitem-form-row">
+                            <td>{{ form.book }}</td>
+                            <td>{{ form.quantity }}</td>
+                            <td>{{ form.price }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                
+                <button type="submit">Зберегти</button>
+                <button type="button" id="add-more-btn" class="add-more-button">Додати ще товар</button>
+            </form>
+            </div>
             <table>
                 {% include 'base/include/model_fields.html' %}
                 <tbody id="books-table-body">
@@ -28,17 +65,52 @@
 {% endblock content %}
 {% block extra_scripts %}
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const bookField = document.querySelector("#id_book");
-        const quantityField = document.querySelector("#id_quantity");
-        const priceField = document.querySelector("#id_price");
+document.addEventListener("DOMContentLoaded", function () {
+    const addMoreButton = document.getElementById("add-more-btn");
+    const formsetContainer = document.getElementById("orderitem-formset");
+    const formTemplate = formsetContainer.querySelector(".orderitem-form-row");
+    const managementForm = document.querySelector("[name='form-TOTAL_FORMS']");
 
-        async function updatePrice() {
+    // Clone form row correctly and reset necessary fields
+    function cloneFormRow() {
+        const totalForms = parseInt(managementForm.value) || 0;
+
+        // Clone the template row
+        const newForm = formTemplate.cloneNode(true);
+
+        // Update form indices
+        const inputs = newForm.querySelectorAll("input, select");
+        inputs.forEach(input => {
+            if (input.name) {
+                input.name = input.name.replace(/-\d+-/, `-${totalForms}-`);
+            }
+            if (input.id) {
+                input.id = input.id.replace(/-\d+-/, `-${totalForms}-`);
+            }
+            input.value = ""; // Clear input values
+        });
+
+        newForm.style.display = ""; // Make the row visible
+        formsetContainer.appendChild(newForm);
+
+        // Increment total form count
+        managementForm.value = totalForms + 1;
+
+        return newForm;
+    }
+
+    // Attach price calculation events to a form row
+    function attachPriceCalculation(row) {
+        const bookField = row.querySelector("[name$='-book']");
+        const quantityField = row.querySelector("[name$='-quantity']");
+        const priceField = row.querySelector("[name$='-price']");
+
+        async function calculatePrice() {
             const bookId = bookField.value;
             const quantity = parseInt(quantityField.value) || 0;
 
             if (!bookId || quantity <= 0) {
-                priceField.value = "";
+                priceField.value = ""; // Clear price if inputs are invalid
                 return;
             }
 
@@ -52,11 +124,33 @@
                 }
             } catch (error) {
                 console.error("Error fetching book price:", error);
-                priceField.value = "";
+                priceField.value = ""; // Clear price on error
             }
         }
-        bookField.addEventListener("change", updatePrice);
-        quantityField.addEventListener("input", updatePrice);
+
+        bookField.addEventListener("change", calculatePrice);
+        quantityField.addEventListener("input", calculatePrice);
+    }
+
+    // Initialize event listeners for all existing rows
+    function initializeRows() {
+        const rows = formsetContainer.querySelectorAll(".orderitem-form-row:not([data-initialized])");
+        rows.forEach(row => {
+            attachPriceCalculation(row);
+            row.setAttribute("data-initialized", "true"); // Mark as initialized
+        });
+    }
+
+    // Add a new form row when the "Add More" button is clicked
+    addMoreButton.addEventListener("click", function (e) {
+        e.preventDefault(); // Prevent form submission or default behavior
+
+        const newRow = cloneFormRow(); // Clone a new form row
+        attachPriceCalculation(newRow); // Attach price calculation logic to the new row
     });
+
+    // Initialize rows on page load
+    initializeRows();
+});
 </script>
 {% endblock extra_scripts %}
