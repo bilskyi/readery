@@ -6,6 +6,7 @@ from watson import search as watson_search
 from .mixins import ModelContextMixin, ModelSuccessUrlMixin, ModelFormMixin
 from .forms import DynamicModelForm, OrderItemForm, OrderItemFormSet
 from .models import Book, Author, Genre, OrderItem, Bill
+from django.core.paginator import Paginator
 from django.utils.timezone import now
 
 
@@ -46,7 +47,7 @@ class OrderItemView(ModelContextMixin, ModelFormMixin, ModelSuccessUrlMixin, gen
         return context
 
     def post(self, request, *args, **kwargs):
-        # Create the Bill first
+        context = super().post(request, *args, **kwargs)
         bill = Bill.objects.create(date=now(), total_amount=0.00)  # You can customize this as needed
 
         # Handle the formset
@@ -58,28 +59,38 @@ class OrderItemView(ModelContextMixin, ModelFormMixin, ModelSuccessUrlMixin, gen
                 order_item.bill = bill
                 order_item.save()
 
+            # Invalidate queryset cache after modifying the data
+            queryset_cache_key = f'{self.model.__name__}_queryset'
+            cache.delete(queryset_cache_key)
+
             return redirect('orderitem_list')
 
         context = self.get_context_data()
         context['orderitem_formset'] = formset
         return self.render_to_response(context)
 
-
 class BillView(ModelContextMixin, ModelFormMixin, ModelSuccessUrlMixin, generic.edit.FormMixin, generic.ListView):
     model = Bill
     template_name = 'base/bills.html'
     form_class = DynamicModelForm.create(Bill)
     extra_context = {'add_button_name': 'Додати новий чек'}
-    paginate_by = 10
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
 
+        # Getting the list of bills with prefetching
         bills = self.get_queryset().prefetch_related(
-        Prefetch('orderitem_set', queryset=OrderItem.objects.select_related('book')),
-    )
+            Prefetch('orderitem_set', queryset=OrderItem.objects.select_related('book')),
+        )
 
-        context['bills'] = bills
+        # Pagination logic
+        paginator = Paginator(bills, self.paginate_by)
+        page_number = self.request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        # Add the page object to the context to render pagination links in the template
+        context['page_obj'] = page_obj
+        context['bills'] = page_obj.object_list
         
         return context
 

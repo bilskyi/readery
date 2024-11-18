@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const totalPriceContainer = document.createElement("div");
     totalPriceContainer.id = "total-price-container";
-    totalPriceContainer.innerHTML = `<strong>Загальна ціна: </strong><span id="total-price">0.00</span> грн`;
+    totalPriceContainer.innerHTML = `<h3><strong>Загальна ціна: </strong><span id="total-price">0.00</span> грн</h3>`;
     formsetContainer.parentElement.appendChild(totalPriceContainer);
 
     // Reset a form row (clear values for new rows)
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!row.querySelector(".delete-row-btn")) {
             const deleteButton = document.createElement("button");
             deleteButton.type = "button";
-            deleteButton.textContent = "Видалити";
+            deleteButton.textContent = "X";
             deleteButton.classList.add("delete-row-btn");
             deleteButton.addEventListener("click", () => {
                 row.remove();

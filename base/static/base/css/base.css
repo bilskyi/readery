@@ -416,11 +416,36 @@ button.add-more-button:hover {
 
 .orderitem-form-row input,
 .orderitem-form-row select {
-    width: 90%;
-    max-width: 90%;
+    width: 22vw;
+    max-width: 22vw;
     padding: 1vw;
     font-size: 1vw;
 }
+
+.delete-row-btn {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    background-color: #c93030;
+    padding: 0.4vw;
+    border-radius: 0.4vw;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: inline-block;
+    margin-left: 0.4vw; 
+}
+
+.delete-row-btn:hover {
+    background-color: #a82727;
+}
+
+.orderitem-form-row {
+    position: relative;
+    padding-right: 30px; /* Add some space on the right for the delete button */
+}
+
 
 /* Adjustments for mobile screens */
 @media (max-width: 768px) {
