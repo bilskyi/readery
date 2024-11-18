@@ -68,8 +68,21 @@
 document.addEventListener("DOMContentLoaded", function () {
     const addMoreButton = document.getElementById("add-more-btn");
     const formsetContainer = document.getElementById("orderitem-formset");
-    const formTemplate = formsetContainer.querySelector(".orderitem-form-row");
+    const formTemplate = formsetContainer.querySelector(".orderitem-form-row").cloneNode(true);
     const managementForm = document.querySelector("[name='form-TOTAL_FORMS']");
+
+    const totalPriceContainer = document.createElement("div");
+    totalPriceContainer.id = "total-price-container";
+    totalPriceContainer.innerHTML = `<strong>Загальна ціна: </strong><span id="total-price">0.00</span> грн`;
+    formsetContainer.parentElement.appendChild(totalPriceContainer);
+
+    // Reset a form row (clear values for new rows)
+    function resetFormRow(row) {
+        const inputs = row.querySelectorAll("input, select");
+        inputs.forEach(input => {
+            if (input.type !== "hidden") input.value = ""; // Reset non-hidden fields
+        });
+    }
 
     // Clone form row correctly and reset necessary fields
     function cloneFormRow() {
@@ -77,6 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Clone the template row
         const newForm = formTemplate.cloneNode(true);
+        resetFormRow(newForm);
 
         // Update form indices
         const inputs = newForm.querySelectorAll("input, select");
@@ -87,16 +101,64 @@ document.addEventListener("DOMContentLoaded", function () {
             if (input.id) {
                 input.id = input.id.replace(/-\d+-/, `-${totalForms}-`);
             }
-            input.value = ""; // Clear input values
         });
 
-        newForm.style.display = ""; // Make the row visible
-        formsetContainer.appendChild(newForm);
-
-        // Increment total form count
-        managementForm.value = totalForms + 1;
+        addDeleteButton(newForm); // Add delete functionality
+        formsetContainer.appendChild(newForm); // Append to formset
+        managementForm.value = totalForms + 1; // Update total forms count
 
         return newForm;
+    }
+
+    // Add a delete button to a form row
+    function addDeleteButton(row) {
+        if (!row.querySelector(".delete-row-btn")) {
+            const deleteButton = document.createElement("button");
+            deleteButton.type = "button";
+            deleteButton.textContent = "Видалити";
+            deleteButton.classList.add("delete-row-btn");
+            deleteButton.addEventListener("click", () => {
+                row.remove();
+                updateFormIndices();
+                calculateTotalPrice();
+            });
+            row.appendChild(deleteButton);
+        }
+    }
+
+    // Update indices for all form rows
+    function updateFormIndices() {
+        const rows = formsetContainer.querySelectorAll(".orderitem-form-row");
+        rows.forEach((row, index) => {
+            const inputs = row.querySelectorAll("input, select");
+            inputs.forEach(input => {
+                if (input.name) {
+                    input.name = input.name.replace(/-\d+-/, `-${index}-`);
+                }
+                if (input.id) {
+                    input.id = input.id.replace(/-\d+-/, `-${index}-`);
+                }
+            });
+        });
+        managementForm.value = rows.length; // Update management form count
+    }
+
+    // Calculate the total price for all rows
+    function calculateTotalPrice() {
+        const rows = formsetContainer.querySelectorAll(".orderitem-form-row");
+        let totalPrice = 0;
+
+        rows.forEach(row => {
+            const quantityField = row.querySelector("[name$='-quantity']");
+            const priceField = row.querySelector("[name$='-price']");
+            const quantity = parseFloat(quantityField.value) || 0;
+            const price = parseFloat(priceField.value) || 0;
+
+            totalPrice += quantity * price; // Multiply quantity and price
+        });
+
+        const totalPriceElement = document.getElementById("total-price");
+        totalPriceElement.textContent = totalPrice.toFixed(2);
     }
 
     // Attach price calculation events to a form row
@@ -111,6 +173,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (!bookId || quantity <= 0) {
                 priceField.value = ""; // Clear price if inputs are invalid
+                calculateTotalPrice(); // Update total price
                 return;
             }
 
@@ -126,31 +189,35 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.error("Error fetching book price:", error);
                 priceField.value = ""; // Clear price on error
             }
+
+            calculateTotalPrice(); // Update total price after fetching
         }
 
         bookField.addEventListener("change", calculatePrice);
         quantityField.addEventListener("input", calculatePrice);
     }
 
-    // Initialize event listeners for all existing rows
+    // Initialize rows on page load
     function initializeRows() {
-        const rows = formsetContainer.querySelectorAll(".orderitem-form-row:not([data-initialized])");
+        const rows = formsetContainer.querySelectorAll(".orderitem-form-row");
         rows.forEach(row => {
-            attachPriceCalculation(row);
-            row.setAttribute("data-initialized", "true"); // Mark as initialized
+            attachPriceCalculation(row); // Attach price calculation logic
+            addDeleteButton(row); // Ensure delete button exists
         });
+        calculateTotalPrice(); // Calculate total price initially
     }
 
-    // Add a new form row when the "Add More" button is clicked
+    // Add a new form row when "Add More" button is clicked
     addMoreButton.addEventListener("click", function (e) {
-        e.preventDefault(); // Prevent form submission or default behavior
-
-        const newRow = cloneFormRow(); // Clone a new form row
-        attachPriceCalculation(newRow); // Attach price calculation logic to the new row
+        e.preventDefault();
+        const newRow = cloneFormRow();
+        attachPriceCalculation(newRow); // Attach calculation logic to new row
     });
 
-    // Initialize rows on page load
+    // Initialize rows and total price calculation
     initializeRows();
 });
-</script>
+
+    </script>
+    
 {% endblock extra_scripts %}
