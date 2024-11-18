@@ -23,7 +23,7 @@
                             <ul>
                                 {% for item in bill.orderitem_set.all %}
                                     <li>
-                                        {{ item.book.title }} - {{ item.quantity }} x {{ item.price }} грн
+                                        {{ item.book.title }} - {{ item.quantity }} x {{ item.book.price }} грн
                                     </li>
                                 {% endfor %}
                             </ul>
