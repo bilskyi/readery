@@ -58,7 +58,7 @@ class OrderItemView(ModelContextMixin, ModelFormMixin, ModelSuccessUrlMixin, gen
                 order_item.bill = bill
                 order_item.save()
 
-            return redirect('bill_list')
+            return redirect('orderitem_list')
 
         context = self.get_context_data()
         context['orderitem_formset'] = formset
