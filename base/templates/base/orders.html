@@ -144,22 +144,22 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Calculate the total price for all rows
-    function calculateTotalPrice() {
-        const rows = formsetContainer.querySelectorAll(".orderitem-form-row");
-        let totalPrice = 0;
+function calculateTotalPrice() {
+    const rows = formsetContainer.querySelectorAll(".orderitem-form-row");
+    let totalPrice = 0;
 
-        rows.forEach(row => {
-            const quantityField = row.querySelector("[name$='-quantity']");
-            const priceField = row.querySelector("[name$='-price']");
-            const quantity = parseFloat(quantityField.value) || 0;
-            const price = parseFloat(priceField.value) || 0;
+    rows.forEach(row => {
+        const priceField = row.querySelector("[name$='-price']");
+        const price = parseFloat(priceField.value) || 0; // Safely parse as float
 
-            totalPrice += quantity * price; // Multiply quantity and price
-        });
+        if (!isNaN(price)) { // Ensure the price is a valid number
+            totalPrice += price;
+        }
+    });
 
-        const totalPriceElement = document.getElementById("total-price");
-        totalPriceElement.textContent = totalPrice.toFixed(2);
-    }
+    const totalPriceElement = document.getElementById("total-price");
+    totalPriceElement.textContent = totalPrice.toFixed(2); // Display total price with 2 decimals
+}
 
     // Attach price calculation events to a form row
     function attachPriceCalculation(row) {
