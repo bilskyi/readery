@@ -6,6 +6,7 @@
             <table>
                 {% include 'base/include/model_fields.html' %}
                 <tbody id="books-table-body">
+                    <p><a href="{% url 'export_table_to_excel' model_name=model_slug %}">Export</a></p>
                     {% for obj in object_list %}
                     <tr>
                         <!-- FIELDS -->
