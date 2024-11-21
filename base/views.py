@@ -166,24 +166,26 @@ class SearchView(View):
     template_name = 'base/search_results.html'
 
     def get(self, request):
-        query = request.GET.get('query', '')  # Retrieve the search term from the request
+        query = request.GET.get('query', '')
         results = []
         
         if query:
-            # Perform search across all registered models
             search_results = watson_search.search(query)
 
             for result in search_results:
-                fields = {
-                    field.verbose_name: getattr(result.object, field.name, '')
-                    for field in result.object._meta.fields
-                }
-                
-                results.append({
-                    'obj': result.object,
-                    'fields': fields,
-                    'model_name': result.object._meta.verbose_name,
-                })
+                if result.object:
+                    fields = {
+                        field.verbose_name: getattr(result.object, field.name, '')
+                        for field in result.object._meta.fields
+                    }
+
+                    results.append({
+                        'obj': result.object,
+                        'fields': fields,
+                        'model_name': result.object._meta.verbose_name,
+                    })
+                else:
+                    continue
 
         return render(request, self.template_name, {
             'query': query,
