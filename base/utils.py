@@ -23,7 +23,7 @@ def export_table_to_excel(request, model_name=None):
 
     workbook = openpyxl.Workbook()
     worksheet = workbook.active
-    worksheet.title = "Data Export"
+    worksheet.title = f"{model.__name__} Data"
 
     fields = [field.name for field in model._meta.fields]
     field_verbose_names = [field.verbose_name for field in model._meta.fields]
@@ -45,7 +45,7 @@ def export_table_to_excel(request, model_name=None):
     response = HttpResponse(
         content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     )
-    response["Content-Disposition"] = f'attachment; filename="{model.__name__}.xlsx"'
+    response["Content-Disposition"] = f'attachment; filename="export_{model.__name__}.xlsx"'
 
     workbook.save(response)
     return response
