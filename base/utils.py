@@ -28,6 +28,10 @@ def export_table_to_excel(request, model_name=None):
     fields = [field.name for field in model._meta.fields]
     field_verbose_names = [field.verbose_name for field in model._meta.fields]
 
+    if model_name.lower() == "bill":
+        fields.append("ordered_goods")
+        field_verbose_names.append("Ordered Goods")
+
     worksheet.append(field_verbose_names)
 
     for cell in worksheet[1]:
@@ -36,10 +40,19 @@ def export_table_to_excel(request, model_name=None):
     for obj in model.objects.all():
         row = []
         for field in fields:
-            value = getattr(obj, field, "")
-            if hasattr(value, "__str__"):
-                value = str(value)
-            row.append(value)
+            if field == "ordered_goods" and hasattr(obj, "orderitem_set"):
+                ordered_goods = ", ".join(
+                    [
+                        f"{item.book.title} - {item.quantity} x {item.book.price} грн"
+                        for item in obj.orderitem_set.all()
+                    ]
+                )
+                row.append(ordered_goods)
+            else:
+                value = getattr(obj, field, "")
+                if hasattr(value, "__str__"):
+                    value = str(value)
+                row.append(value)
         worksheet.append(row)
 
     response = HttpResponse(
