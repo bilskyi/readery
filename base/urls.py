@@ -38,4 +38,5 @@ urlpatterns = [
 
     # JSON resopnses
     path('books/<int:book_id>/price/', utils.get_book_price, name='get_book_price'),
+    path('export/<str:model_name>', utils.export_table_to_excel, name='export_table_to_excel'),
 ]

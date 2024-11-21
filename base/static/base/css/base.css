@@ -446,6 +446,21 @@ button.add-more-button:hover {
     padding-right: 30px; /* Add some space on the right for the delete button */
 }
 
+/* Add this to your existing CSS for .export_link */
+.export_link {
+    float: right;
+    padding: 0.8vw 2vw;
+    background-color: #37a7c0;
+    color: white;
+    text-decoration: none;
+    border-radius: 0.4vw;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.export_link:hover {
+    background-color: #2a8498;
+}
 
 /* Adjustments for mobile screens */
 @media (max-width: 768px) {

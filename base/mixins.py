@@ -42,6 +42,7 @@ class ModelContextMixin:
 
             context['fields'] = fields
             context['model_name'] = model._meta.verbose_name_plural
+            context['model_slug'] = self.model._meta.model_name
         
         return context
 
