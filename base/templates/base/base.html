@@ -27,6 +27,7 @@
     </div>
 
     <main>
+        <p><a href="{% url 'export_table_to_excel' model_name=model_slug %}" class="export_link">Export</a></p>
         {% block content %}
         {% endblock %}
         {% include 'base/include/pagination.html' %}
