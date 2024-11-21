@@ -13,12 +13,7 @@ def get_book_price(request, book_id):
         return JsonResponse({'price': book.price})
     except Book.DoesNotExist:
         return JsonResponse({'error': 'Book not found'}, status=404)
-
-
-from django.apps import apps
-from django.http import HttpResponse
-from openpyxl import Workbook
-from openpyxl.styles import Font
+    
 
 def export_table_to_excel(request, model_name=None):
     try:
@@ -26,7 +21,7 @@ def export_table_to_excel(request, model_name=None):
     except LookupError:
         return HttpResponse("Invalid model name", status=400)
 
-    workbook = Workbook()
+    workbook = openpyxl.Workbook()
     worksheet = workbook.active
     worksheet.title = "Data Export"
 
