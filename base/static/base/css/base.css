@@ -414,6 +414,17 @@ button.add-more-button:hover {
     background-color: #4383b5;
 }
 
+a.print-button {
+    font-size: 18px;
+    background-color: #509cd5;
+}
+
+a.print-button:hover {
+    background-color: #4383b5;
+}
+
+
+
 .orderitem-form-row input,
 .orderitem-form-row select {
     width: 22vw;
@@ -450,7 +461,7 @@ button.add-more-button:hover {
 .export_link {
     float: right;
     padding: 0.8vw 2vw;
-    background-color: #37a7c0;
+    background-color: #49b34b;
     color: white;
     text-decoration: none;
     border-radius: 0.4vw;
@@ -459,7 +470,7 @@ button.add-more-button:hover {
 }
 
 .export_link:hover {
-    background-color: #2a8498;
+    background-color: #3d9b3e;
 }
 
 /* Adjustments for mobile screens */
