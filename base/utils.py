@@ -3,7 +3,6 @@ from openpyxl.styles import Font
 from django.http import HttpResponse
 from django.http import JsonResponse
 from weasyprint import HTML
-from xhtml2pdf import pisa
 from django.template.loader import render_to_string
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
