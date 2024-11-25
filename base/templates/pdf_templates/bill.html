@@ -19,9 +19,9 @@ body {
 </head>
 <body>
     <h1>Чек #{{ bill.id }}</h1>
-    <p><strong>Date:</strong> {{ bill.date }}</p>
+    <p><strong>Дата:</strong> {{ bill.date }}</p>
 
-    <h2>Чеки</h2>
+    <h2>Замовлені товари</h2>
     <table>
         <thead>
             <tr>
@@ -43,6 +43,6 @@ body {
         </tbody>
     </table>
 
-    <h2>Total: {{ bill.total_amount }} грн</h2>
+    <h2>Сума: {{ bill.total_amount }} грн</h2>
 </body>
 </html>
