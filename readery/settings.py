@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'watson',
-    'debug_toolbar',
     'base.apps.BaseConfig',
 ]
 
@@ -55,7 +54,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'watson.middleware.SearchContextMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'readery.urls'
